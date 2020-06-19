@@ -6,8 +6,20 @@ require 'stringio'
 # Complete the jimOrders function below.
 def jimOrders(orders)
     n = orders.size
-    n = [0, 0]
-    return n
+    serve_times = []
+    orders.each do |i|
+        serve_time = i[0] + i[1]
+        serve_times << serve_time
+    end
+    customer_num = {}
+    n.times do |i|
+        customer_num[i+1] = serve_times[i]
+    end
+    turns = []
+    customer_num.sort_by { |_, v| v }.to_h.each_key do |k|
+        turns << k
+    end
+    return turns
 end
 
 #fptr = File.open(ENV['OUTPUT_PATH'], 'w')
