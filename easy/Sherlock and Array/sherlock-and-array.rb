@@ -8,27 +8,22 @@ def balancedSums(arr)
     n = arr.size
     i = n - 2
     right_all = arr.slice(1..-1).sum
+    left_all = arr.slice(0..-2).sum
+    #p right_all
+    #p left_all
     if right_all == 0
+        result = 'YES'
+    elsif left_all == 0
         result = 'YES'
     else
         i.times do |j|
-            if j == i
-                left_all = arr.slice(1..-1).sum
-                if left_all == 0
-                    result = 'YES'
-                    break
-                else
-                    result = 'NO'
-                end
+            arr_left = arr.slice(0..j).sum
+            arr_right = arr.slice(j+2..-1).sum
+            if arr_left == arr_right
+                result = 'YES'
+                break
             else
-                arr_left = arr.slice(0..j)
-                arr_right =arr.slice(j+2..-1)
-                if arr_left.sum == arr_right.sum
-                    result = 'YES'
-                    break
-                else
-                    result = 'NO'
-                end
+                result = 'NO'
             end
         end
     end
