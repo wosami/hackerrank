@@ -3,11 +3,10 @@
 require 'json'
 require 'stringio'
 
-# Complete the findMedian function below.
-def findMedian(arr)
-    n = arr.count
-    a = ( n + 1 ) / 2 - 1
-    return arr.sort[a]
+# Complete the closestNumbers function below.
+def closestNumbers(arr)
+
+
 end
 
 #fptr = File.open(ENV['OUTPUT_PATH'], 'w')
@@ -17,9 +16,9 @@ n = gets.to_i
 
 arr = gets.rstrip.split(' ').map(&:to_i)
 
-result = findMedian arr
+result = closestNumbers arr
 
-fptr.write result
+fptr.write result.join " "
 fptr.write "\n"
 
 fptr.close()
