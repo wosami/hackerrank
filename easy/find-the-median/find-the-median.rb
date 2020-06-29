@@ -5,8 +5,9 @@ require 'stringio'
 
 # Complete the findMedian function below.
 def findMedian(arr)
-
-
+    n = arr.count
+    a = ( n + 1 ) / 2 - 1
+    return arr.sort[a]
 end
 
 #fptr = File.open(ENV['OUTPUT_PATH'], 'w')
