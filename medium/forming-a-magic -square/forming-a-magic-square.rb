@@ -5,41 +5,32 @@ require 'stringio'
 
 # Complete the formingMagicSquare function below.
 def formingMagicSquare(s)
-    # the sum of any row, column, or diagonal of length 3 is always equal to 15
-    # s[1][1] is always 5.
-    diff_abs = 0
-    s.each do |r|
-        p r
-        diff = r.sum - 15
-        diff_abs += diff.abs
+    magic_arr = [
+        [[8, 1, 6], [3, 5, 7], [4, 9, 2]],
+        [[6, 1, 8], [7, 5, 3], [2, 9, 4]],
+        [[4, 9, 2], [3, 5, 7], [8, 1, 6]],
+        [[2, 9, 4], [7, 5, 3], [6, 1, 8]],
+        [[2, 7, 6], [9, 5, 1], [4, 3, 8]],
+        [[6, 7, 2], [1, 5, 9], [8, 3, 4]],
+        [[4, 3, 8], [9, 5, 1], [2, 7, 6]],
+        [[8, 3, 4], [1, 5, 9], [6, 7, 2]],
+    ]
+    totals = []
+    magic_arr.each do |m_arr|
+        total = 0
+        s.zip(m_arr) do |s_row, m_row|
+            s_row.zip(m_row) do |s_e, m_e|
+                #p s_e, m_e
+                if s_e != m_e
+                    total += (s_e.to_i - m_e.to_i).abs
+                    # p total
+                end
+            end
+        end
+        totals << total
+        p totals
     end
-    return diff_abs
-    # diff_abs = []
-    # if s[1][1] != 5
-    #     diff = s[1][1] - 5
-    #     diff_abs << diff.abs
-    #     s[1][1] = 5
-    # end
-    # if s[1][0] == 3
-    #     if s[1][2] != 7
-    #         diff = s[1][2] - 7
-    #         diff_abs << diff.abs
-    #         s[1][2] = 7
-    #     end
-    #     if 
-
-    # s.each do |r|
-    #     if r[0][0] == 
-    # rows_1 = s[0][0] + s[0][1] + s[0][2] - 15
-    # rows_2 = s[1][0] + s[1][1] + s[1][2] - 15
-    # rows_3 = s[2][0] + s[2][1] + s[2][2] - 15
-    # column_1 = s[0][0] + s[1][0] + s[2][0] - 15
-    # column_2 = s[0][1] + s[1][1] + s[2][1] - 15
-    # column_3 = s[0][2] + s[1][2] + s[2][2] - 15
-    # diagonal_right = s[0][0] + s[1][1] + s[2][2] - 15
-    # diagonal_left = s[0][2] + s[1][1] + s[2][0] - 15
-    # if row_1 != 15
-
+    return totals.min
 end
 
 #fptr = File.open(ENV['OUTPUT_PATH'], 'w')
