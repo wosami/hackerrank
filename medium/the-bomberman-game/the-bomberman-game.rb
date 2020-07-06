@@ -11,7 +11,9 @@ def bomberMan(n, grid)
     # 3. put 0 in all place after 2 second
     # 4. remove where was 0 and neibors of it and check where is 0
     # 5. repeat 3-4
-    if n % 2 == 0
+    if n == 1
+        return grid
+    elsif n % 2 == 0
         grid.each do |grid_row|
             grid_row.length.times do |i|
                 grid_row[i] = "0"
@@ -19,7 +21,6 @@ def bomberMan(n, grid)
         end
         return grid
     else
-        return grid
     # i,j = 0
     # grid.each do |arr|
     #     arr.each do |e|
@@ -30,8 +31,8 @@ def bomberMan(n, grid)
     #     end
     #     i++
     # end
-    end
-end
+        return grid
+    endend
 
 #fptr = File.open(ENV['OUTPUT_PATH'], 'w')
 fptr = File.open('/myapp/openfile', 'w')
