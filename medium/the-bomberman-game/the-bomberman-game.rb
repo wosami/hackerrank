@@ -5,12 +5,8 @@ require 'stringio'
 
 # Complete the bomberMan function below.
 def bomberMan(n, grid)
-    # process
-    # 1. check where is O
-    # 2. do nothing 1 second
-    # 3. put O in all place after 2 second
-    # 4. remove where was O and neibors of it and check where is O
-    # 5. repeat 3-4
+    r = grid.length
+    c = grid[0].length
     if n == 1
         return grid
     elsif n % 2 == 0
@@ -25,9 +21,6 @@ def bomberMan(n, grid)
         index = 0
         grid.each do |grid_row|
             row_arr = grid_row.rstrip.split(//)
-            # p row_arr
-            # get index number where is 0 from grid_row
-            #elements = row_arr.each_index.select{|i| grid_row[i] == "0"}
             if row_arr.include?("O")
                 elements = []
                 row_arr.each_index {|i|
@@ -35,12 +28,10 @@ def bomberMan(n, grid)
                         elements << i
                     end
                 }
-                # p elements
                 hash_zeros[index] = elements
             else
                 hash_zeros[index] = "none"
             end
-            # p index
             index += 1
         end
         grid.each do |grid_row|
@@ -48,8 +39,6 @@ def bomberMan(n, grid)
                 grid_row[i] = "O"
             end
         end
-        r = grid.length
-        c = grid[0].length
         if r == 1
             hash_zeros.each do |k, v|
                 if v != "none"
@@ -126,14 +115,10 @@ def bomberMan(n, grid)
         return grid
     else
         2.times do
-            # p grid
             hash_zeros = {}
             index = 0
             grid.each do |grid_row|
                 row_arr = grid_row.rstrip.split(//)
-                # p row_arr
-                # get index number where is 0 from grid_row
-                #elements = row_arr.each_index.select{|i| grid_row[i] == "0"}
                 if row_arr.include?("O")
                     elements = []
                     row_arr.each_index {|i|
@@ -141,12 +126,10 @@ def bomberMan(n, grid)
                             elements << i
                         end
                     }
-                    # p elements
                     hash_zeros[index] = elements
                 else
                     hash_zeros[index] = "none"
                 end
-                # p index
                 index += 1
             end
             grid.each do |grid_row|
@@ -154,8 +137,6 @@ def bomberMan(n, grid)
                     grid_row[i] = "O"
                 end
             end
-            r = grid.length
-            c = grid[0].length
             if r == 1
                 hash_zeros.each do |k, v|
                     if v != "none"
@@ -251,9 +232,6 @@ r.times do |i|
     grid_item = gets.to_s.rstrip
     grid[i] = grid_item
 end
-
-# grid example
-# [[.,.,.,.,.,.,.],[.,.,.,O,.,.,.],..,[O,O,.,.,.,.,.]]
 
 result = bomberMan n, grid
 
