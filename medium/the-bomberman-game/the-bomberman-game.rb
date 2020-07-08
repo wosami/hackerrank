@@ -21,6 +21,76 @@ def bomberMan(n, grid)
         end
         return grid
     else
+        # n = n-2
+        # n.times do
+        hash_zeros = {}
+        index = 0
+        grid.each do |grid_row|
+            row_arr = grid_row.rstrip.split(//)
+            # p row_arr
+            # get index number where is 0 from grid_row
+            #elements = row_arr.each_index.select{|i| grid_row[i] == "0"}
+            if row_arr.include?("O")
+                elements = []
+                row_arr.each_index {|i|
+                    if row_arr[i].to_s == "O"
+                        elements << i
+                    end
+                }
+                # p elements
+                hash_zeros[index] = elements
+            else
+                hash_zeros[index] = "none"
+            end
+            # p index
+            index += 1
+        end
+        grid.each do |grid_row|
+            grid_row.length.times do |i|
+                grid_row[i] = "0"
+            end
+        end
+        hash_zeros.each do |k, v|
+            if v != "none"
+                v.each do |j|
+                    if k == 0
+                        grid[k][j] = "."
+                        grid[k+1][j] = "."
+                        if j == 0
+                            grid[k][j+1] = "."
+                        elsif j == 5
+                            grid[k][j-1] = "."
+                        else
+                            grid[k][j+1] = "."
+                            grid[k][j-1] = "."
+                        end
+                    elsif k == 5
+                        grid[k][j] = "."
+                        grid[k-1][j] = "."
+                        if j == 0
+                            grid[k][j+1] = "."
+                        elsif j == 5
+                            grid[k][j-1] = "."
+                        else
+                            grid[k][j+1] = "."
+                            grid[k][j-1] = "."
+                        end
+                    else
+                        grid[k][j] = "."
+                        grid[k-1][j] = "."
+                        grid[k+1][j] = "."
+                        if j == 0
+                            grid[k][j+1] = "."
+                        elsif j == 5
+                            grid[k][j-1] = "."
+                        else
+                            grid[k][j+1] = "."
+                            grid[k][j-1] = "."
+                        end
+                    end
+                end
+            end
+        end
     # i,j = 0
     # grid.each do |arr|
     #     arr.each do |e|
@@ -32,7 +102,8 @@ def bomberMan(n, grid)
     #     i++
     # end
         return grid
-    endend
+    end
+end
 
 #fptr = File.open(ENV['OUTPUT_PATH'], 'w')
 fptr = File.open('/myapp/openfile', 'w')
