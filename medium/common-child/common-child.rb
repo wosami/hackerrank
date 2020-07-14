@@ -16,21 +16,38 @@ def commonChild(s1, s2)
     arr_s1 = s1.split(//)
     arr_s2 = s2.split(//)
     common = arr_s1 & arr_s2
-    commons = []
+    commons = {}
     if common.length != 0
-        arr_s1.each do |s|
-            p s
+        arr_s1.each_with_index do |s, i|
             if arr_s2.include?(s)
-                commons << s
-                num = arr_s2.index(s)
-                arr_s2 = arr_s2.slice(num+1..-1)
-                p arr_s2
+                elements = []
+                elements << s
+                num1 = arr_s1.index(s)
+                num2 = arr_s2.index(s)
+                s1_rest = arr_s1.slice(num1+1..-1)
+                s2_rest = arr_s2.slice(num2+1..-1)
+                s1_rest.each do |s1|
+                    if s2_rest.include?(s1)
+                        elements << s1
+                        num = arr_s2.index(s1)
+                        s2_rest = arr_s2.slice(num+1..-1)
+                    end
+                end
+                commons[i] = elements
+                p commons[i]
             end
         end
     else
         return 0
     end
-    return commons.length
+    p commons
+    max_length = 0
+    commons.each do |k, v|
+        if max_length < v.length
+            max_length = v.length
+        end
+    end
+    return max_length
 end
 
 #fptr = File.open(ENV['OUTPUT_PATH'], 'w')
